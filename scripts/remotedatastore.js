@@ -36,12 +36,10 @@
 
     RemoteDataStore.prototype.remove = function(key) {
         //console.log(this.serverUrl + '?emailAddress=' + key);
-        var id;
-        var x = this.serverUrl + '?emailAddress=' + key;
         return $.ajax({
-            url: x,
+            url: this.serverUrl + '?emailAddress=' + key,
             success: function(d) {
-                return $.ajax(this.serverUrl + '/' + d[0].id, {
+                return $.ajax('http://localhost:3002/coffeeorders/' + d[0].id, {
                     type: 'DELETE'
                 });
             },
